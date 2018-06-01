@@ -26,7 +26,6 @@ li::before {
 
 .col-40, .col-60 {
   display: table-cell;
-  margin: 0;
   vertical-align: top;
 }
 .col-40 {
@@ -56,15 +55,15 @@ li::before {
   width: 200px;
   box-sizing: border-box;
   text-align: center;
-
   animation: fadein 2s;
 }
 
 #juego img{
     width: 100%;
-    border-style: solid;
+    height: 100%;
+  /*  border-style: solid;
     border-width: 0.5px;
-    border-color: blue;
+    border-color: blue; */
 }
 
 #flecha{
@@ -73,6 +72,10 @@ li::before {
 
 .texto-centrado {
   text-align: center;
+}
+
+.footer {
+  clear: both;
 }
 
 
