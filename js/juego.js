@@ -1,5 +1,5 @@
-// Arreglo que contiene las intrucciones del juego 
-var instrucciones = [];
+// Arreglo que contiene las intrucciones del juego
+var instrucciones = ['Mueve las piezas para arriba abajos izquierda derecha hasta que obtengas la imagen deseada.', 'Tomate un mate y divertite!'];
 // Arreglo para ir guardando los movimientos que se vayan realizando
 var movimientos = [];
 
@@ -11,23 +11,30 @@ var grilla = [
     [7, 8, 9]
 ];
 
-/* Estas dos variables son para guardar la posición de la pieza vacía. 
+/* Estas dos variables son para guardar la posición de la pieza vacía.
 Esta posición comienza siendo la [2, 2]*/
 var filaVacia = 2;
 var columnaVacia = 2;
 
-/* Esta función deberá recorrer el arreglo de instrucciones pasado por parámetro. 
-Cada elemento de este arreglo deberá ser mostrado en la lista con id 'lista-instrucciones'. 
+/* Esta función deberá recorrer el arreglo de instrucciones pasado por parámetro.
+Cada elemento de este arreglo deberá ser mostrado en la lista con id 'lista-instrucciones'.
 Para eso deberás usar la función ya implementada mostrarInstruccionEnLista().
 Podés ver su implementación en la ultima parte de este codigo. */
 function mostrarInstrucciones(instrucciones) {
     //COMPLETAR
+    for (var i = 0; i < instrucciones.length; i++) {
+      mostrarInstruccionEnLista(instrucciones[i], 'lista-instrucciones')
+    }
 }
 
 /* COMPLETAR: Crear función que agregue la última dirección al arreglo de movimientos
 y utilice actualizarUltimoMovimiento para mostrarlo en pantalla */
+function agregarUltimaDireccion(direccion) {
+  movimientos.push(direccion);
+  actualizarUltimoMovimiento(direccion);
+}
 
-/* Esta función va a chequear si el Rompecabezas esta en la posicion ganadora. 
+/* Esta función va a chequear si el Rompecabezas esta en la posicion ganadora.
 Existen diferentes formas de hacer este chequeo a partir de la grilla. */
 function chequearSiGano() {
     //COMPLETAR
@@ -39,9 +46,9 @@ function mostrarCartelGanador() {
 }
 
 /* Función que intercambia dos posiciones en la grilla.
-Pensar como intercambiar dos posiciones en un arreglo de arreglos. 
+Pensar como intercambiar dos posiciones en un arreglo de arreglos.
 Para que tengas en cuenta:
-Si queremos intercambiar las posiciones [1,2] con la [0, 0], si hacemos: 
+Si queremos intercambiar las posiciones [1,2] con la [0, 0], si hacemos:
 arreglo[1][2] = arreglo[0][0];
 arreglo[0][0] = arreglo[1][2];
 
@@ -74,25 +81,25 @@ function moverEnDireccion(direccion) {
     nuevaFilaPiezaVacia = filaVacia - 1;
     nuevaColumnaPiezaVacia = columnaVacia;
   }
-    
+
   // Mueve pieza hacia arriba, reemplazandola con la blanca
   else if (direccion === codigosDireccion.ARRIBA) {
     nuevaFilaPiezaVacia = filaVacia + 1;
     nuevaColumnaPiezaVacia = columnaVacia;
   }
-    
+
   // Mueve pieza hacia la derecha, reemplazandola con la blanca
   else if (direccion === codigosDireccion.DERECHA) {
     //COMPLETAR
   }
-    
+
   // Mueve pieza hacia la izquierda, reemplazandola con la blanca
   else if (direccion === codigosDireccion.IZQUIERDA) {
     // COMPLETAR
   }
 
-  /* A continuación se chequea si la nueva posición es válida, si lo es, se intercambia. 
-  Para que esta parte del código funcione correctamente deberás haber implementado 
+  /* A continuación se chequea si la nueva posición es válida, si lo es, se intercambia.
+  Para que esta parte del código funcione correctamente deberás haber implementado
   las funciones posicionValida, intercambiarPosicionesGrilla y actualizarPosicionVacia */
 
     if (posicionValida(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia)) {
@@ -157,7 +164,7 @@ function intercambiarPosicionesDOM(idPieza1, idPieza2) {
   padre.replaceChild(clonElemento2, elementoPieza1);
 }
 
-/* Actualiza la representación visual del último movimiento 
+/* Actualiza la representación visual del último movimiento
 en la pantalla, representado con una flecha. */
 function actualizarUltimoMovimiento(direccion) {
   ultimoMov = document.getElementById('flecha');
@@ -178,7 +185,7 @@ function actualizarUltimoMovimiento(direccion) {
 }
 
 /* Esta función permite agregar una instrucción a la lista
-con idLista. Se crea un elemento li dinámicamente con el texto 
+con idLista. Se crea un elemento li dinámicamente con el texto
 pasado con el parámetro "instrucción". */
 function mostrarInstruccionEnLista(instruccion, idLista) {
   var ul = document.getElementById(idLista);
@@ -195,7 +202,7 @@ function mezclarPiezas(veces) {
   if (veces <= 0) {
     return;
   }
-  
+
   var direcciones = [codigosDireccion.ABAJO, codigosDireccion.ARRIBA,
       codigosDireccion.DERECHA, codigosDireccion.IZQUIERDA
     ];
@@ -209,8 +216,8 @@ function mezclarPiezas(veces) {
 }
 
 /* capturarTeclas: Esta función captura las teclas presionadas por el usuario. Javascript
-permite detectar eventos, por ejemplo, cuando una tecla es presionada y en 
-base a eso hacer algo. No es necesario que entiendas como funciona esto ahora, 
+permite detectar eventos, por ejemplo, cuando una tecla es presionada y en
+base a eso hacer algo. No es necesario que entiendas como funciona esto ahora,
 en el futuro ya lo vas a aprender. Por ahora, sólo hay que entender que cuando
 se toca una tecla se hace algo en respuesta, en este caso, un movimiento */
 function capturarTeclas() {
@@ -233,8 +240,8 @@ function capturarTeclas() {
     })
 }
 
-/* Se inicia el rompecabezas mezclando las piezas 60 veces 
-y ejecutando la función para que se capturen las teclas que 
+/* Se inicia el rompecabezas mezclando las piezas 60 veces
+y ejecutando la función para que se capturen las teclas que
 presiona el usuario */
 function iniciar() {
     mostrarInstrucciones(instrucciones);
@@ -244,3 +251,5 @@ function iniciar() {
 
 // Ejecutamos la función iniciar
 iniciar();
+
+// TODO: agregar Por ejemplo: ¿cómo sería mostrar los últimos 5 movimientos? ¿O mostrar al final del juego todos los movimientos realizados?
