@@ -56,6 +56,8 @@ li::before {
   box-sizing: border-box;
   text-align: center;
   animation: fadein 2s;
+  height: 200px;
+  border: 0.5px black solid;
 }
 
 #juego img{
