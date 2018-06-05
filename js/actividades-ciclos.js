@@ -1,3 +1,58 @@
+//arrays
+var diasDeLaSemana = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
+
+var numerosPares= [2,4,6,9,10,12];
+function arreDos(arreglo) {
+  arreglo[3]=8;
+}
+
+var deportes=['Hockey', 'Rugby', 'Atletismo'];
+function arreTres(arreglo) {
+  arreglo.push('Jujitsu');
+}
+
+function arreCuatro(arreglo) {
+  var deporte = arreglo.pop();
+  console.log(deporte);
+}
+
+function arreCinco(a) {
+  var arreglo = [];
+  var comida = '';
+  for (var i = 0; i < a; i++) {
+    arreglo[i] = prompt('Ingrese su comida favorita #'+ i);
+    /*arreglo.push(comida);*/
+  }
+  console.log('El largo del arreglo es de '+ arreglo.length);
+}
+
+var errores = ['Error de definicion', 'Error funcion inexistente', 'Error de sintaxis', 'Error indefinido'];
+function arreSeis(arreglo) {
+  alert(arreglo.indexOf('Error de sintaxis'));
+}
+
+function arreSiete(arreglo) {
+  for (var i = 0; i < arreglo.length; i++) {
+    console.log(arreglo[i])
+  }
+}
+
+var enteros = [2, 5, 7];
+function arreOcho(arreglo) {
+  var suma = 0;
+  for (var i = 0; i < arreglo.length; i++) {
+    suma += arreglo[i];
+  }
+  console.log(suma);
+}
+
+function arreNueve(arreglo) {
+  for (var i = arreglo.length; i = 0; i--) {
+    console.log(arreglo[i]);
+  }
+}
+
+// ciclos
 function uno() {
   var contador=0;
   while (contador<=5){
