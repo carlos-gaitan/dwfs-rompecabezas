@@ -50,6 +50,10 @@ li::before {
   height: 600px;
 }
 
+#titulo {
+  background: #EC6778;
+}
+
 #juego div {
   float:left;
   width: 200px;
@@ -57,15 +61,12 @@ li::before {
   text-align: center;
   animation: fadein 2s;
   height: 200px;
-  border: 0.5px black solid;
+  border: 0.5px #007c74 solid;
 }
 
 #juego img{
     width: 100%;
     height: 100%;
-  /*  border-style: solid;
-    border-width: 0.5px;
-    border-color: blue; */
 }
 
 #flecha{

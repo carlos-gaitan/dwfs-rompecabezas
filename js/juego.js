@@ -37,12 +37,23 @@ function agregarUltimaDireccion(direccion) {
 /* Esta función va a chequear si el Rompecabezas esta en la posicion ganadora.
 Existen diferentes formas de hacer este chequeo a partir de la grilla. */
 function chequearSiGano() {
-    //COMPLETAR
+    var valorAnterior = 0;
+    for (var i = 0; i < grilla.length; i++) {
+      for (var j = 0; j < grilla[i].length; j++) {
+        console.log(valorAnterior + "<" + grilla[i][j]);
+        if ((valorAnterior + 1) !== grilla[i][j]) {
+          return false;
+        }
+        valorAnterior = grilla[i][j];
+      }
+    }
+    return true;
 }
 
 // Implementar alguna forma de mostrar un cartel que avise que ganaste el juego
 function mostrarCartelGanador() {
     //COMPLETAR
+    alert('Felicidades, has ganado!');
 }
 
 /* Función que intercambia dos posiciones en la grilla.
@@ -57,6 +68,9 @@ Se te ocurre cómo solucionar esto con una variable temporal?
 */
 function intercambiarPosicionesGrilla(filaPos1, columnaPos1, filaPos2, columnaPos2) {
     //COMPLETAR
+    var contenedorAuxiliar = grilla[filaPos1][columnaPos1];
+    grilla[filaPos1][columnaPos1] = grilla[filaPos2][columnaPos2];
+    grilla[filaPos2][columnaPos2] = contenedorAuxiliar;
 }
 
 // Actualiza la posición de la pieza vacía
