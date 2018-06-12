@@ -87,7 +87,7 @@ function posicionValida(fila, columna) {
     var width = grilla.length;
     var height = grilla[0].length;
     // return (0 <= fila) && (fila <=2) && (0 <= columna) && (columna <=2)
-    return 0 <= fila && fila <= width && 0 <= columna && columna <= height;
+    return 0 <= fila && fila < width && 0 <= columna && columna < height;
 }
 
 /* Movimiento de fichas, en este caso la que se mueve es la blanca intercambiando su posición con otro elemento.
@@ -95,17 +95,22 @@ Las direcciones están dadas por números que representa: arriba (38), abajo (40
 function moverEnDireccion(direccion) {
   var nuevaFilaPiezaVacia;
   var nuevaColumnaPiezaVacia;
+  console.log('direccion:'+direccion);
 
   // Mueve pieza hacia la abajo, reemplazandola con la blanca
   if (direccion === codigosDireccion.ABAJO) {
-    nuevaFilaPiezaVacia = filaVacia - 1;
+    nuevaFilaPiezaVacia = filaVacia + 1;
     nuevaColumnaPiezaVacia = columnaVacia;
+    //nuevaFilaPiezaVacia = filaVacia - 1;
+    //nuevaColumnaPiezaVacia = columnaVacia;
   }
 
   // Mueve pieza hacia arriba, reemplazandola con la blanca
   else if (direccion === codigosDireccion.ARRIBA) {
-    nuevaFilaPiezaVacia = filaVacia + 1;
+    nuevaFilaPiezaVacia = filaVacia - 1;
     nuevaColumnaPiezaVacia = columnaVacia;
+    //nuevaFilaPiezaVacia = filaVacia + 1;
+    //nuevaColumnaPiezaVacia = columnaVacia;
   }
 
   // Mueve pieza hacia la derecha, reemplazandola con la blanca
@@ -126,13 +131,13 @@ function moverEnDireccion(direccion) {
   Para que esta parte del código funcione correctamente deberás haber implementado
   las funciones posicionValida, intercambiarPosicionesGrilla y actualizarPosicionVacia */
 
-    if (posicionValida(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia)) {
-        intercambiarPosiciones(filaVacia, columnaVacia, nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
-        actualizarPosicionVacia(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
+  if (posicionValida(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia)) {
+    intercambiarPosiciones(filaVacia, columnaVacia, nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
+    actualizarPosicionVacia(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
+    //COMPLETAR: Agregar la dirección del movimiento al arreglo de movimientos
+    agregarUltimaDireccion(direccion);
 
-  //COMPLETAR: Agregar la dirección del movimiento al arreglo de movimientos
-
-    }
+  }
 }
 
 
