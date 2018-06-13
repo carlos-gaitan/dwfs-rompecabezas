@@ -1,3 +1,23 @@
+// aca estoy viendo como meto dificultades
+// var lista = document.getElementById('lista-instrucciones')
+// undefined
+// lista
+// <ul id=​"lista-instrucciones">​…​</ul>​
+// var ficha = document.createElement('div')
+// undefined
+// ficha
+// <div>​</div>​
+// ficha.innerText = "prueba"
+// "prueba"
+// ficha
+// <div>​prueba​</div>​
+// lista.appendChild(ficha)
+// <div>​prueba​</div>​
+
+
+
+
+
 // Arreglo que contiene las intrucciones del juego
 var instrucciones = ['Mueve las piezas para arriba abajos izquierda derecha hasta que obtengas la imagen deseada.', 'Tomate un mate y divertite!'];
 // Arreglo para ir guardando los movimientos que se vayan realizando
