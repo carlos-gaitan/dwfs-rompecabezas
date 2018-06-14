@@ -1,7 +1,7 @@
 // TODO:
 // borrar el arreglo de movimientos una vez ganado el juego.
 // mostrar en pantalla la cantidad de movimientos que la persona viene ejecutando.
-// 
+//
 
 
 
@@ -27,6 +27,19 @@ var columnaVacia = 2;
 Cada elemento de este arreglo deberá ser mostrado en la lista con id 'lista-instrucciones'.
 Para eso deberás usar la función ya implementada mostrarInstruccionEnLista().
 Podés ver su implementación en la ultima parte de este codigo. */
+
+function reloj() {
+  var elementoReloj = document.getElementById('reloj');
+  var segundos = 0;
+  setInterval(function() {
+    var hr = Math.floor(segundos / 3600);
+    var min = Math.floor(segundos / 60);
+  	var seg = segundos % 60;
+    elementoReloj.innerText = hr + ':' + min + ':' + seg;
+  	segundos++;
+  }, 1000);
+};
+
 function mostrarInstrucciones(instrucciones) {
     for (var i = 0; i < instrucciones.length; i++) {
       mostrarInstruccionEnLista(instrucciones[i], 'lista-instrucciones')
@@ -309,6 +322,7 @@ y ejecutando la función para que se capturen las teclas que
 presiona el usuario */
 function iniciar() {
     mostrarInstrucciones(instrucciones);
+    reloj();
     mezclarPiezas(30);
     capturarTeclas();
 }
