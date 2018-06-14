@@ -1,12 +1,25 @@
-// TODO:
-// borrar el arreglo de movimientos una vez ganado el juego.
-// mostrar en pantalla la cantidad de movimientos que la persona viene ejecutando.
-// 
+// aca estoy viendo como meto dificultades
+// var lista = document.getElementById('lista-instrucciones')
+//
+// lista
+// <ul id=​"lista-instrucciones">​…​</ul>​
+// var ficha = document.createElement('div')
+// undefined
+// ficha
+// <div>​</div>​
+// ficha.innerText = "prueba"
+// "prueba"
+// ficha
+// <div>​prueba​</div>​
+// lista.appendChild(ficha)
+// <div>​prueba​</div>​
+
+
 
 
 
 // Arreglo que contiene las intrucciones del juego
-var instrucciones = ['Mueve las piezas para arriba abajo izquierda derecha hasta que obtengas la imagen deseada.', 'Tomate un mate y divertite!'];
+var instrucciones = ['Mueve las piezas para arriba abajos izquierda derecha hasta que obtengas la imagen deseada.', 'Tomate un mate y divertite!'];
 // Arreglo para ir guardando los movimientos que se vayan realizando
 var movimientos = [];
 
@@ -18,6 +31,12 @@ var grilla = [
     [7, 8, 9]
 ];
 
+//para el Modal
+var modal = document.getElementById('myModal');
+modal.addEventListener('click', function(){
+  modal.style.display = "none";
+});
+
 /* Estas dos variables son para guardar la posición de la pieza vacía.
 Esta posición comienza siendo la [2, 2]*/
 var filaVacia = 2;
@@ -28,9 +47,10 @@ Cada elemento de este arreglo deberá ser mostrado en la lista con id 'lista-ins
 Para eso deberás usar la función ya implementada mostrarInstruccionEnLista().
 Podés ver su implementación en la ultima parte de este codigo. */
 function mostrarInstrucciones(instrucciones) {
+    //COMPLETAR
     for (var i = 0; i < instrucciones.length; i++) {
       mostrarInstruccionEnLista(instrucciones[i], 'lista-instrucciones')
-    };
+    }
 }
 
 /* COMPLETAR: Crear función que agregue la última dirección al arreglo de movimientos
@@ -57,47 +77,9 @@ function chequearSiGano() {
 }
 
 // Implementar alguna forma de mostrar un cartel que avise que ganaste el juego
-// Listener para cerrar el cartel Modal Css - Mensaje has ganado!
-var modal = document.getElementById('myModal');
-modal.addEventListener('click', function(){
-  modal.style.display = "none";
-});
-// Funcion para mostrar el cartel Modal Css - Mensaje has ganado!
 function mostrarCartelGanador() {
+    //COMPLETAR
     modal.style.display = "block";
-    // FIXME: Esta bien llamarla desde aca adentro? Me uele con olor feoooooo ...
-    mostrarCincoUltimosMovimientos(movimientos);
-}
-
-function mostrarCincoUltimosMovimientos(arrelgoDeMovimientos) {
-  // FIXME: debo decidir como y en que elemento del dom agrego las flechas.
-  var listaCincoMovimientos = document.getElementById('cinco-mov');
-  var comienzo = arrelgoDeMovimientos.length - 5;
-for (var i = comienzo; i < arrelgoDeMovimientos.length; i++) {
-  var unMovimiento = document.createElement('p');
-  switch (arrelgoDeMovimientos[i]) {
-    case codigosDireccion.ARRIBA:
-      unMovimiento.innerText = '↑';
-      listaCincoMovimientos.appendChild(unMovimiento);
-      console.log('↑');
-      break;
-    case codigosDireccion.ABAJO:
-      unMovimiento.innerText = '↓';
-      listaCincoMovimientos.appendChild(unMovimiento);
-      console.log('↓');
-      break;
-    case codigosDireccion.DERECHA:
-      unMovimiento.innerText = '→';
-      listaCincoMovimientos.appendChild(unMovimiento);
-      console.log('→');
-      break;
-    case codigosDireccion.IZQUIERDA:
-      unMovimiento.innerText = '←';
-      listaCincoMovimientos.appendChild(unMovimiento);
-      console.log('←');
-      break;
-  }
-}
 }
 
 /* Función que intercambia dos posiciones en la grilla.
@@ -119,6 +101,7 @@ function intercambiarPosicionesGrilla(filaPos1, columnaPos1, filaPos2, columnaPo
 
 // Actualiza la posición de la pieza vacía
 function actualizarPosicionVacia(nuevaFila, nuevaColumna) {
+    //COMPLETAR
     filaVacia = nuevaFila;
     columnaVacia = nuevaColumna;
 }
@@ -126,6 +109,7 @@ function actualizarPosicionVacia(nuevaFila, nuevaColumna) {
 
 // Para chequear si la posicón está dentro de la grilla.
 function posicionValida(fila, columna) {
+    //COMPLETAR
     var width = grilla.length;
     var height = grilla[0].length;
     // return (0 <= fila) && (fila <=2) && (0 <= columna) && (columna <=2)
@@ -143,22 +127,28 @@ function moverEnDireccion(direccion) {
   if (direccion === codigosDireccion.ABAJO) {
     nuevaFilaPiezaVacia = filaVacia + 1;
     nuevaColumnaPiezaVacia = columnaVacia;
+    //nuevaFilaPiezaVacia = filaVacia - 1;
+    //nuevaColumnaPiezaVacia = columnaVacia;
   }
 
   // Mueve pieza hacia arriba, reemplazandola con la blanca
   else if (direccion === codigosDireccion.ARRIBA) {
     nuevaFilaPiezaVacia = filaVacia - 1;
     nuevaColumnaPiezaVacia = columnaVacia;
+    //nuevaFilaPiezaVacia = filaVacia + 1;
+    //nuevaColumnaPiezaVacia = columnaVacia;
   }
 
   // Mueve pieza hacia la derecha, reemplazandola con la blanca
   else if (direccion === codigosDireccion.DERECHA) {
+    //COMPLETAR
     nuevaFilaPiezaVacia = filaVacia;
     nuevaColumnaPiezaVacia = columnaVacia + 1;
   }
 
   // Mueve pieza hacia la izquierda, reemplazandola con la blanca
   else if (direccion === codigosDireccion.IZQUIERDA) {
+    // COMPLETAR
     nuevaFilaPiezaVacia = filaVacia;
     nuevaColumnaPiezaVacia = columnaVacia - 1;
   }
@@ -172,6 +162,7 @@ function moverEnDireccion(direccion) {
     actualizarPosicionVacia(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
     //COMPLETAR: Agregar la dirección del movimiento al arreglo de movimientos
     agregarUltimaDireccion(direccion);
+
   }
 }
 

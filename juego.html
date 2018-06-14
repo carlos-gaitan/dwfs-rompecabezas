@@ -7,12 +7,11 @@
   </head>
   <body>
     <div class="col-40">
-
       <div id="titulo">
-        Titulo
+        Rompecabezas
       </div>
       <div id="instrucciones">
-        Instrucciones
+        Instrucciones:
         <ul id="lista-instrucciones">
         </ul>
       </div>
@@ -23,11 +22,10 @@
       </div>
       <div id="ultimo-mov">
         <div id="flecha" class="texto-centrado">
-
         </div>
       </div>
-
     </div>
+
     <div class="col-60">
       <div class="tablero" id="juego">
         <div class="pieza" id="pieza1"><img src="images/10.jpg" alt=""></div>
@@ -38,22 +36,29 @@
         <div class="pieza" id="pieza6"><img src="images/60.jpg" alt=""></div>
         <div class="pieza" id="pieza7"><img src="images/70.jpg" alt=""></div>
         <div class="pieza" id="pieza8"><img src="images/80.jpg" alt=""></div>
-        <div class="pieza" id="pieza9"><img src="#" alt=""></div>
+        <div class="pieza" id="pieza9"><img src="images/90.jpg" alt=""></div>
       </div>
     </div>
+
     <div class="footer" id="footer">
-      algunos derechos reservados | Acamica & elcharly-2018
+      algunos derechos reservados | Acamica & elcharly - 2018
     </div>
-    <!-- The Modal -->
-<div id="myModal" class="modal">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Some text in the Modal..</p>
-  </div>
-
-</div>
+  <!-- Modal Css - Mensaje has ganado -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Felicidades, en hora buena has ganado!</p>
+        <p>Tus ultimos 5 movimientos fueron ...</p>
+        <div id="cinco-mov">
+          <div id="flecha" class="texto-centrado">
+          </div>
+        </div>
+        <p>Y has demoderado tantos minutos</p>
+        <p></p>
+      </div>
+    </div>
   <!--  <script src="js/juego.js"></script> -->
     <script src="js/juego.js"></script>
   </body>

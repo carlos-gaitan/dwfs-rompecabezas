@@ -1,6 +1,12 @@
+/*Con el permiso de La Foca Loca S.A. me tomo el
+atrvimiento de agregar una fuente para personalizar el estilado*/
+@import url('https://fonts.googleapis.com/css?family=Jua');
+/* Se utilizo la siguiente paleta de colores: http://www.color-hex.com/color-palette/61875*/
 /*Código armado por La Foca Loca S.A. No modificar*/
 body {
-  font-family: Arial, sans-serif;
+  /*font-family: Arial, sans-serif;*/
+  font-family: 'Jua', sans-serif;
+  color: #3a3532;
   width: 940px;
   margin: 5% auto;
   min-height: 100%;
@@ -16,12 +22,13 @@ li {
 }
 li::before {
   content: "• ";
-  color: #EC6778;
+  /*color: #EC6778;*/
+  color: #ec6500;
 }
 
 .col-40 h1 {
   font-size: 20px;
-  color: #E84A5F;
+  color: #3a3532;
 }
 
 .col-40, .col-60 {
@@ -30,7 +37,7 @@ li::before {
 }
 .col-40 {
   float: left;
-  background: #FFF;
+  background: #a4a09f;
   box-sizing: border-box;
   width: 340px;
   height: 600px;
@@ -45,13 +52,15 @@ li::before {
 
 .col-60 {
   float: right;
-  background: #E84A5F;
+  background: #ec6500;
   width: 600px;
   height: 600px;
 }
 
 #titulo {
-  background: #EC6778;
+  /*background: #EC6778;*/
+  background: #ec6500;
+  text-align: center;
 }
 
 #juego div {
@@ -61,7 +70,9 @@ li::before {
   text-align: center;
   animation: fadein 2s;
   height: 200px;
-  border: 0.5px #007c74 solid;
+  /*border: 0.5px #007c74 solid;*/
+  border: 0.5px #49423f solid;
+
 }
 
 #juego img{
@@ -71,6 +82,7 @@ li::before {
 
 #flecha{
   font-size: 60px;
+  color: #ec6500;
 }
 
 .texto-centrado {
@@ -79,6 +91,7 @@ li::before {
 
 .footer {
   clear: both;
+  text-align: right;
 }
 
 
@@ -110,7 +123,7 @@ li::before {
     width: 80%;
 }
 
-/* The Close Button */
+/* El boton cerrar */
 .close {
     color: #aaaaaa;
     float: right;
