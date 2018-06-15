@@ -69,11 +69,27 @@ function chequearSiGano() {
     return true;
 }
 
+
+// Implementacion de pagina de bienvenida al juego e inicio de variales reloj y demas.
+var modal2 = document.getElementById('myModal2');
+modal2.addEventListener('click', function(){
+  modal2.style.display = 'none';
+  iniciar();
+
+});
+//
+function mostrarCartelInicioJuego(){
+  modal2.style.display = 'block';
+
+};
+
+
+
 // Implementar alguna forma de mostrar un cartel que avise que ganaste el juego
 // Listener para cerrar el cartel Modal Css - Mensaje has ganado!
 var modal = document.getElementById('myModal');
 modal.addEventListener('click', function(){
-  modal.style.display = "none";
+modal.style.display = "none";
 });
 // Funcion para mostrar el cartel Modal Css - Mensaje has ganado!
 function mostrarCartelGanador() {
@@ -328,6 +344,7 @@ function iniciar() {
 }
 
 // Ejecutamos la función iniciar
-iniciar();
+//iniciar();
+mostrarCartelInicioJuego();
 
 // TODO: agregar Por ejemplo: ¿cómo sería mostrar los últimos 5 movimientos? ¿O mostrar al final del juego todos los movimientos realizados?
