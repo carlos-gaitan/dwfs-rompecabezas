@@ -94,6 +94,15 @@ li::before {
   text-align: right;
 }
 
+.controles-tiempo{
+  display: inline-flex;
+  flex-direction: row;
+  align-content: space-around;
+}
+.control-btn{
+
+}
+
 
 @keyframes fadein {
   from { opacity: 0; }
