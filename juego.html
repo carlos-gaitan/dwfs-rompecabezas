@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title>BMO Arcade</title>
     <link rel="stylesheet" href="css/juego.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
   </head>
   <body>
     <div class="col-40">
@@ -23,13 +22,14 @@
       </div>
       <div id="ultimo-mov">
         <div id="flecha" class="texto-centrado"></div>
-        <div id="reloj"></div>
       </div>
       <div class="controles-tiempo">
-        <div id="reloj" class="control-btn"></div>
-        <div class="control-btn">play</div>
-        <div class="control-btn">stop</div>
-
+        <!-- <div id="reloj" class="control-btn"> p </div> -->
+        <div class="control-btn">
+          <div id="tiempo"></div>
+        </div>
+        <div class="control-btn">reiniciar</div>
+        <div class="control-btn"> <a onclick="cronometroParar();"href="#">finalizar</a></div>
       </div>
     </div>
 
@@ -76,5 +76,6 @@
     </div>
   <!--  <script src="js/juego.js"></script> -->
     <script src="js/juego.js"></script>
+    <!-- <script src="js/cronometro.js"></script> -->
   </body>
 </html>

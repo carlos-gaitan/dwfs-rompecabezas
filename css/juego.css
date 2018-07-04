@@ -95,12 +95,12 @@ li::before {
 }
 
 .controles-tiempo{
-  display: inline-flex;
-  flex-direction: row;
-  align-content: space-around;
+  display: flex;
+  justify-content: space-between;
+
 }
 .control-btn{
-
+  align-items: center;
 }
 
 

@@ -23,22 +23,37 @@ Esta posición comienza siendo la [2, 2]*/
 var filaVacia = 2;
 var columnaVacia = 2;
 
+/* Esta funcion cronometrara el tiempo utilizado desde el inicio del juego hasta su fin*/
+var tiempoCronometrado = '0:0:0';
+var pepe;
+
+function cronometro() {
+  var elementoTiempo = document.getElementById('tiempo');
+  var segundos = 0;
+  pepe = setInterval(function() {
+    var hr = Math.floor(segundos / 3600);
+    var min = Math.floor(segundos / 60);
+  	var seg = segundos % 60;
+    tiempoCronometrado = hr + ':' + min + ':' + seg;
+    elementoTiempo.innerText = tiempoCronometrado;
+  	segundos++;
+  }, 1000);
+};
+function cronometroParar() {
+  clearInterval(pepe);
+};
+function cronometroReiniciar() {
+  clearInterval(pepe);
+  hr = 0;
+  min = 0;
+  seg = 0;
+
+};
+
 /* Esta función deberá recorrer el arreglo de instrucciones pasado por parámetro.
 Cada elemento de este arreglo deberá ser mostrado en la lista con id 'lista-instrucciones'.
 Para eso deberás usar la función ya implementada mostrarInstruccionEnLista().
 Podés ver su implementación en la ultima parte de este codigo. */
-
-function reloj() {
-  var elementoReloj = document.getElementById('reloj');
-  var segundos = 0;
-  setInterval(function() {
-    var hr = Math.floor(segundos / 3600);
-    var min = Math.floor(segundos / 60);
-  	var seg = segundos % 60;
-    elementoReloj.innerText = hr + ':' + min + ':' + seg;
-  	segundos++;
-  }, 1000);
-};
 
 function mostrarInstrucciones(instrucciones) {
     for (var i = 0; i < instrucciones.length; i++) {
@@ -338,7 +353,7 @@ y ejecutando la función para que se capturen las teclas que
 presiona el usuario */
 function iniciar() {
     mostrarInstrucciones(instrucciones);
-    reloj();
+    cronometro();
     mezclarPiezas(30);
     capturarTeclas();
 }
