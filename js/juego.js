@@ -47,6 +47,7 @@ function cronometroReiniciar() {
   hr = 0;
   min = 0;
   seg = 0;
+  cronometro();
 
 };
 
