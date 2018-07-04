@@ -25,31 +25,40 @@ var columnaVacia = 2;
 
 /* Esta funcion cronometrara el tiempo utilizado desde el inicio del juego hasta su fin*/
 var tiempoCronometrado = '0:0:0';
-var pepe;
+var hr = 0;
+var min = 0;
+var seg = 0;
+var control;
 
 function cronometro() {
   var elementoTiempo = document.getElementById('tiempo');
   var segundos = 0;
-  pepe = setInterval(function() {
-    var hr = Math.floor(segundos / 3600);
-    var min = Math.floor(segundos / 60);
-  	var seg = segundos % 60;
+  control = setInterval(function() {
+    hr = Math.floor(min / 3600);
+    min = Math.floor(seg / 60);
+  	seg = seg % 60;
     tiempoCronometrado = hr + ':' + min + ':' + seg;
     elementoTiempo.innerText = tiempoCronometrado;
-  	segundos++;
+  	seg++;
   }, 1000);
 };
+// TODO: si paro no deberia tener que poder mover piezas
 function cronometroParar() {
-  clearInterval(pepe);
+  clearInterval(control);
 };
+
 function cronometroReiniciar() {
-  clearInterval(pepe);
+  clearInterval(control);
   hr = 0;
   min = 0;
   seg = 0;
   cronometro();
-
 };
+// TODO: si resumo habilito mobilidad en piezas
+function cronometroResume() {
+  cronometro();
+};
+
 
 /* Esta función deberá recorrer el arreglo de instrucciones pasado por parámetro.
 Cada elemento de este arreglo deberá ser mostrado en la lista con id 'lista-instrucciones'.
