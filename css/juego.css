@@ -101,6 +101,17 @@ li::before {
 }
 .control-btn{
   align-items: center;
+  /* colorcito acamica ... esaaaa! */
+  color: #50f;
+}
+
+.control-btn a{
+  text-decoration: none;
+  /* colorcito acamica ... esaaaa! */
+  color: #50f;
+}
+.control-btn a:hover{
+  color: #ec6500;
 }
 
 

@@ -30,11 +30,12 @@ var min = 0;
 var seg = 0;
 var control;
 
+// FIXME: no muestra bien el tiempo --> hay que repararlo.
 function cronometro() {
   var elementoTiempo = document.getElementById('tiempo');
   var segundos = 0;
   control = setInterval(function() {
-    hr = Math.floor(min / 3600);
+    hr = Math.floor(seg / 3600);
     min = Math.floor(seg / 60);
   	seg = seg % 60;
     tiempoCronometrado = hr + ':' + min + ':' + seg;
@@ -42,8 +43,8 @@ function cronometro() {
   	seg++;
   }, 1000);
 };
-// TODO: si paro no deberia tener que poder mover piezas
-function cronometroParar() {
+
+function cronometroPausar() {
   clearInterval(control);
 };
 
@@ -54,17 +55,15 @@ function cronometroReiniciar() {
   seg = 0;
   cronometro();
 };
-// TODO: si resumo habilito mobilidad en piezas
+
 function cronometroResume() {
   cronometro();
 };
-
 
 /* Esta función deberá recorrer el arreglo de instrucciones pasado por parámetro.
 Cada elemento de este arreglo deberá ser mostrado en la lista con id 'lista-instrucciones'.
 Para eso deberás usar la función ya implementada mostrarInstruccionEnLista().
 Podés ver su implementación en la ultima parte de este codigo. */
-
 function mostrarInstrucciones(instrucciones) {
     for (var i = 0; i < instrucciones.length; i++) {
       mostrarInstruccionEnLista(instrucciones[i], 'lista-instrucciones')
@@ -94,31 +93,41 @@ function chequearSiGano() {
     return true;
 }
 
-
-// Implementacion de pagina de bienvenida al juego e inicio de variales reloj y demas.
-var modal2 = document.getElementById('myModal2');
-modal2.addEventListener('click', function(){
-  modal2.style.display = 'none';
-  iniciar();
-
+// Implementacion de cartel de bienvenida al juego e inicio de variales reloj y demas.
+var modalBienvenida = document.getElementById('myModalBienvenida');
+modalBienvenida.addEventListener('click', function(){
+  modalBienvenida.style.display = 'none';
+  iniciarJuego();
 });
-//
-function mostrarCartelInicioJuego(){
-  modal2.style.display = 'block';
 
+// Muestra cartel al inicio del juego
+function mostrarCartelInicioJuego() {
+  modalBienvenida.style.display = 'block';
 };
 
+function mostrarCartelPausado() {
+  modalPausado.style.display = 'block';
 
+}
+
+// Implementacion de cartel de juego pausado.
+var modalPausado = document.getElementById('myModalPausado');
+modalPausado.addEventListener('click', function() {
+  modalPausado.style.display = 'none';
+  //llamar a la funcion resumirJuego
+  //resumirJuego();
+});
 
 // Implementar alguna forma de mostrar un cartel que avise que ganaste el juego
 // Listener para cerrar el cartel Modal Css - Mensaje has ganado!
-var modal = document.getElementById('myModal');
-modal.addEventListener('click', function(){
-modal.style.display = "none";
-});
+var modalGanador = document.getElementById('myModalGanador');
+// modalGanador.addEventListener('click', function() {
+//   modalGanador.style.display = "none";
+// });
+
 // Funcion para mostrar el cartel Modal Css - Mensaje has ganado!
 function mostrarCartelGanador() {
-    modal.style.display = "block";
+    modalGanador.style.display = "block";
     // FIXME: Esta bien llamarla desde aca adentro? Me uele con olor feoooooo ...
     mostrarCincoUltimosMovimientos(movimientos);
 }
@@ -361,11 +370,18 @@ function capturarTeclas() {
 /* Se inicia el rompecabezas mezclando las piezas 60 veces
 y ejecutando la función para que se capturen las teclas que
 presiona el usuario */
-function iniciar() {
+function iniciarJuego() {
     mostrarInstrucciones(instrucciones);
     cronometro();
     mezclarPiezas(30);
     capturarTeclas();
+}
+function resumirJuego() {
+  cronometroReiniciar();
+}
+function pausarJuego() {
+  cronometroPausar();
+  mostrarCartelPausado();
 }
 
 // Ejecutamos la función iniciar
