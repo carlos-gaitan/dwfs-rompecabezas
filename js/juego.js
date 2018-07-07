@@ -100,6 +100,7 @@ modalBienvenida.addEventListener('click', function(){
   iniciarJuego();
 });
 
+
 // Muestra cartel al inicio del juego
 function mostrarCartelInicioJuego() {
   modalBienvenida.style.display = 'block';
@@ -107,13 +108,13 @@ function mostrarCartelInicioJuego() {
 
 function mostrarCartelPausado() {
   modalPausado.style.display = 'block';
-
-}
+};
 
 // Implementacion de cartel de juego pausado.
 var modalPausado = document.getElementById('myModalPausado');
 modalPausado.addEventListener('click', function() {
   modalPausado.style.display = 'none';
+  resumirJuego();
   //llamar a la funcion resumirJuego
   //resumirJuego();
 });
@@ -377,15 +378,20 @@ function iniciarJuego() {
     capturarTeclas();
 }
 function resumirJuego() {
-  cronometroReiniciar();
+  cronometroResume();
 }
 function pausarJuego() {
   cronometroPausar();
+  // TODO: tengo que bloquear el movimiento de teclas.
   mostrarCartelPausado();
 }
-
+function nuevoJuego() {
+    mezclarPiezas(30);
+    cronometroReiniciar();
+}
 // Ejecutamos la función iniciar
 //iniciar();
 mostrarCartelInicioJuego();
+//iniciarJuego()
 
 // TODO: agregar Por ejemplo: ¿cómo sería mostrar los últimos 5 movimientos? ¿O mostrar al final del juego todos los movimientos realizados?
