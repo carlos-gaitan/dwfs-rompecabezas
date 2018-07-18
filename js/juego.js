@@ -1,12 +1,10 @@
-// TODO:
-// borrar el arreglo de movimientos una vez ganado el juego.
-// mostrar en pantalla la cantidad de movimientos que la persona viene ejecutando.
 //
-
-
+// Declaracion de variables globales
+//
 
 // Arreglo que contiene las intrucciones del juego
 var instrucciones = ['Mueve las piezas para arriba abajo izquierda derecha hasta que obtengas la imagen deseada.', 'Tomate un mate y divertite!'];
+
 // Arreglo para ir guardando los movimientos que se vayan realizando
 var movimientos = [];
 
@@ -23,16 +21,18 @@ Esta posición comienza siendo la [2, 2]*/
 var filaVacia = 2;
 var columnaVacia = 2;
 
-/* Esta funcion cronometrara el tiempo utilizado desde el inicio del juego hasta su fin*/
+// juegoPausado es una variable global booleana que me permite mientras el juego
+//esta pausado dejar las fichas estaticas evitando que sigan jugando hasta que quiten la pausa.
+var juegoPausado = false;
+
+//
+// Funcion para cronometrar la partida del juego.
+//
 var tiempoCronometrado = '0:0:0';
 var hr = 0;
 var min = 0;
 var seg = 0;
 var control;
-
-// juegoPausado es una variable global booleana que me permite mientras el juego
-//esta pausado dejar las fichas estaticas evitando que sigan jugando hasta que quiten la pausa.
-var juegoPausado = false;
 
 // FIXME: no muestra bien el tiempo --> hay que repararlo.
 function cronometro() {
@@ -64,6 +64,10 @@ function cronometroResume() {
   cronometro();
 };
 
+//
+// Funciones varias
+//
+
 /* Esta función deberá recorrer el arreglo de instrucciones pasado por parámetro.
 Cada elemento de este arreglo deberá ser mostrado en la lista con id 'lista-instrucciones'.
 Para eso deberás usar la función ya implementada mostrarInstruccionEnLista().
@@ -72,14 +76,14 @@ function mostrarInstrucciones(instrucciones) {
     for (var i = 0; i < instrucciones.length; i++) {
       mostrarInstruccionEnLista(instrucciones[i], 'lista-instrucciones')
     };
-}
+};
 
 /* COMPLETAR: Crear función que agregue la última dirección al arreglo de movimientos
 y utilice actualizarUltimoMovimiento para mostrarlo en pantalla */
 function agregarUltimaDireccion(direccion) {
   movimientos.push(direccion);
   actualizarUltimoMovimiento(direccion);
-}
+};
 
 /* Esta función va a chequear si el Rompecabezas esta en la posicion ganadora.
 Existen diferentes formas de hacer este chequeo a partir de la grilla. */
@@ -95,25 +99,39 @@ function chequearSiGano() {
       }
     }
     return true;
-}
+};
 
-// Implementacion de cartel de bienvenida al juego e inicio de variales reloj y demas.
+//
+// Funciones para los carteles Bienvenida, Nuevo y Pausado
+//
+
+/*Muestra cartel de Bienvenida al juego.*/
+function mostrarCartelBienvenida() {
+  modalBienvenida.style.display = 'block';
+};
+/*Implementacion Salida de cartel de bienvenida al juego.*/
 var modalBienvenida = document.getElementById('myModalBienvenida');
 modalBienvenida.addEventListener('click', function(){
   modalBienvenida.style.display = 'none';
   iniciarJuego();
 });
 
-// Implementacion de cartel de juego pausado.
+/*Muestra cartel de juego Pausado.*/
+function mostrarCartelPausado() {
+  modalPausado.style.display = 'block';
+};
+/*Implementacion Salida de cartel de juego pausado.*/
 var modalPausado = document.getElementById('myModalPausado');
 modalPausado.addEventListener('click', function() {
   modalPausado.style.display = 'none';
   resumirJuego();
-  //llamar a la funcion resumirJuego
-  //resumirJuego();
 });
 
-// Implementacion de cartel de juego nuevo.
+/*Muestra cartel de juego Nuevo.*/
+function mostrarCartelNuevo() {
+  modalNuevo.style.display = 'block';
+};
+/*Implementacion Salida de cartel de juego nuevo.*/
 var modalNuevo = document.getElementById('myModalNuevo');
 modalNuevo.addEventListener('click', function() {
   modalNuevo.style.display = 'none';
@@ -122,29 +140,20 @@ modalNuevo.addEventListener('click', function() {
   cronometroReiniciar();
 });
 
-// Implementacion de cartel ganador.
+/*Implementacion Salida de cartel ganador.*/
 var modalGanador = document.getElementById('myModalGanador');
 modalGanador.addEventListener('click', function() {
   modalGanador.style.display = 'none';
+  var elemento = document.getElementById('cinco-mov');
+  while (elemento.firstChild) {
+    elemento.removeChild(elemento.firstChild);
+  };
   juegoPausado = false;
   mezclarPiezas(30);
   cronometroReiniciar();
-  movimientos = [];
 });
 
 
-// Muestra cartel al inicio del juego
-function mostrarCartelBienvenida() {
-  modalBienvenida.style.display = 'block';
-};
-
-function mostrarCartelPausado() {
-  modalPausado.style.display = 'block';
-};
-
-function mostrarCartelNuevo() {
-  modalNuevo.style.display = 'block';
-};
 
 
 
@@ -162,6 +171,7 @@ function mostrarCartelGanador() {
     cronometroPausar();
     mostrarCincoUltimosMovimientos(movimientos);
     mostrarTiempoTranscurrido();
+    movimientos = [];
 }
 
 function mostrarCincoUltimosMovimientos(arrelgoDeMovimientos) {
@@ -169,7 +179,7 @@ function mostrarCincoUltimosMovimientos(arrelgoDeMovimientos) {
   var listaCincoMovimientos = document.getElementById('cinco-mov');
   var comienzo = arrelgoDeMovimientos.length - 5;
 for (var i = comienzo; i < arrelgoDeMovimientos.length; i++) {
-  var unMovimiento = document.createElement('p');
+  var unMovimiento = document.createElement('div');
   switch (arrelgoDeMovimientos[i]) {
     case codigosDireccion.ARRIBA:
       unMovimiento.innerText = '↑';
