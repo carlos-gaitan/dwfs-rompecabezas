@@ -32,37 +32,34 @@ var tiempoCronometrado = '0:0:0';
 var hr = 0;
 var min = 0;
 var seg = 0;
+var segundos = 0;
 var control;
 
-// FIXME: no muestra bien el tiempo --> hay que repararlo.
 function cronometro() {
   var elementoTiempo = document.getElementById('tiempo');
-  var segundos = 0;
   control = setInterval(function() {
-    hr = Math.floor(seg / 3600);
-    min = Math.floor(seg / 60);
-  	seg = seg % 60;
+    hr = Math.floor(segundos / 3600);
+    min = Math.floor(segundos / 60);
+    seg = segundos % 60;
     tiempoCronometrado = hr + ':' + min + ':' + seg;
     elementoTiempo.innerText = tiempoCronometrado;
-  	seg++;
+  	segundos++;
   }, 1000);
-};
+}
 
 function cronometroPausar() {
   clearInterval(control);
-};
+}
 
 function cronometroReiniciar() {
   clearInterval(control);
-  hr = 0;
-  min = 0;
-  seg = 0;
+  segundos = 0;
   cronometro();
-};
+}
 
 function cronometroResume() {
   cronometro();
-};
+}
 
 //
 // Funciones varias
@@ -76,14 +73,14 @@ function mostrarInstrucciones(instrucciones) {
     for (var i = 0; i < instrucciones.length; i++) {
       mostrarInstruccionEnLista(instrucciones[i], 'lista-instrucciones')
     };
-};
+}
 
 /* COMPLETAR: Crear función que agregue la última dirección al arreglo de movimientos
 y utilice actualizarUltimoMovimiento para mostrarlo en pantalla */
 function agregarUltimaDireccion(direccion) {
   movimientos.push(direccion);
   actualizarUltimoMovimiento(direccion);
-};
+}
 
 /* Esta función va a chequear si el Rompecabezas esta en la posicion ganadora.
 Existen diferentes formas de hacer este chequeo a partir de la grilla. */
@@ -99,7 +96,7 @@ function chequearSiGano() {
       }
     }
     return true;
-};
+}
 
 //
 // Funciones para los carteles Bienvenida, Nuevo y Pausado
@@ -108,7 +105,7 @@ function chequearSiGano() {
 /*Muestra cartel de Bienvenida al juego.*/
 function mostrarCartelBienvenida() {
   modalBienvenida.style.display = 'block';
-};
+}
 /*Implementacion Salida de cartel de bienvenida al juego.*/
 var modalBienvenida = document.getElementById('myModalBienvenida');
 modalBienvenida.addEventListener('click', function(){
@@ -119,7 +116,7 @@ modalBienvenida.addEventListener('click', function(){
 /*Muestra cartel de juego Pausado.*/
 function mostrarCartelPausado() {
   modalPausado.style.display = 'block';
-};
+}
 /*Implementacion Salida de cartel de juego pausado.*/
 var modalPausado = document.getElementById('myModalPausado');
 modalPausado.addEventListener('click', function() {
@@ -130,7 +127,7 @@ modalPausado.addEventListener('click', function() {
 /*Muestra cartel de juego Nuevo.*/
 function mostrarCartelNuevo() {
   modalNuevo.style.display = 'block';
-};
+}
 /*Implementacion Salida de cartel de juego nuevo.*/
 var modalNuevo = document.getElementById('myModalNuevo');
 modalNuevo.addEventListener('click', function() {
@@ -140,6 +137,14 @@ modalNuevo.addEventListener('click', function() {
   cronometroReiniciar();
 });
 
+/*Muestra cartel de Ganador.*/
+function mostrarCartelGanador() {
+    modalGanador.style.display = "block";
+    cronometroPausar();
+    mostrarCincoUltimosMovimientos(movimientos);
+    mostrarTiempoTranscurrido();
+    movimientos = [];
+}
 /*Implementacion Salida de cartel ganador.*/
 var modalGanador = document.getElementById('myModalGanador');
 modalGanador.addEventListener('click', function() {
@@ -155,24 +160,10 @@ modalGanador.addEventListener('click', function() {
 
 
 
-
-
-// Implementar alguna forma de mostrar un cartel que avise que ganaste el juego
-// Listener para cerrar el cartel Modal Css - Mensaje has ganado!
-var modalGanador = document.getElementById('myModalGanador');
-// modalGanador.addEventListener('click', function() {
-//   modalGanador.style.display = "none";
-// });
-
-// Funcion para mostrar el cartel Modal Css - Mensaje has ganado!
-function mostrarCartelGanador() {
-    modalGanador.style.display = "block";
-    // FIXME: Esta bien llamarla desde aca adentro? Me uele con olor feoooooo ...
-    cronometroPausar();
-    mostrarCincoUltimosMovimientos(movimientos);
-    mostrarTiempoTranscurrido();
-    movimientos = [];
-}
+//
+// Estoy ordennado y quede por aca!
+//
+//
 
 function mostrarCincoUltimosMovimientos(arrelgoDeMovimientos) {
   // FIXME: debo decidir como y en que elemento del dom agrego las flechas.
@@ -208,7 +199,7 @@ for (var i = comienzo; i < arrelgoDeMovimientos.length; i++) {
 function mostrarTiempoTranscurrido() {
   var elementoTiempo = document.getElementById('tiempo-transcurrido');
   elementoTiempo.innerText = tiempoCronometrado;
-};
+}
 
 /* Función que intercambia dos posiciones en la grilla.
 Pensar como intercambiar dos posiciones en un arreglo de arreglos.
@@ -221,7 +212,6 @@ En vez de intercambiar esos valores vamos a terminar teniendo en ambas posicione
 Se te ocurre cómo solucionar esto con una variable temporal?
 */
 function intercambiarPosicionesGrilla(filaPos1, columnaPos1, filaPos2, columnaPos2) {
-    //COMPLETAR
     var contenedorAuxiliar = grilla[filaPos1][columnaPos1];
     grilla[filaPos1][columnaPos1] = grilla[filaPos2][columnaPos2];
     grilla[filaPos2][columnaPos2] = contenedorAuxiliar;
@@ -400,9 +390,8 @@ function capturarTeclas() {
       evento.which === codigosDireccion.ARRIBA ||
       evento.which === codigosDireccion.DERECHA ||
       evento.which === codigosDireccion.IZQUIERDA) {
-
         // Aca tomo la variable global juegoPausado para ver si esta
-        //pausado o activo y asi permitir o no mever las fichas.
+        //pausado o activo y asi permitir o no mover las imagenes.
         if (juegoPausado === false) {
           moverEnDireccion(evento.which);
           var gano = chequearSiGano();
@@ -415,39 +404,39 @@ function capturarTeclas() {
         }
       }
     })
-};
+}
 
 /* Se inicia el rompecabezas mezclando las piezas 60 veces
 y ejecutando la función para que se capturen las teclas que
 presiona el usuario */
 
-
+/* Funcion que inicia el juego por primera vez (primer inicio)*/
 function iniciarJuego() {
-    mostrarInstrucciones(instrucciones);
-    cronometro();
-    mezclarPiezas(30);
-    capturarTeclas();
+  mostrarInstrucciones(instrucciones);
+  cronometro();
+  mezclarPiezas(30);
+  capturarTeclas();
 }
-
-// TODO: funcion primer inicio
 
 function resumirJuego() {
   cronometroResume();
   juegoPausado = false;
 }
+
 function pausarJuego() {
   cronometroPausar();
   juegoPausado = true;
   mostrarCartelPausado();
 }
+
+/* Funcion que inicia un juego Nuevo una vez que ya se cargo el juego por primera vez */
 function nuevoJuego() {
   cronometroPausar();
   juegoPausado = true;
   mostrarCartelNuevo();
 }
-// Ejecutamos la función iniciar
-//iniciar();
-mostrarCartelBienvenida();
-//iniciarJuego()
 
-// TODO: agregar Por ejemplo: ¿cómo sería mostrar los últimos 5 movimientos? ¿O mostrar al final del juego todos los movimientos realizados?
+//
+// Inicio del juego
+//
+mostrarCartelBienvenida();
