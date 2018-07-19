@@ -39,7 +39,7 @@ function cronometro() {
   var elementoTiempo = document.getElementById('tiempo');
   control = setInterval(function() {
     hr = Math.floor(segundos / 3600);
-    min = Math.floor(segundos / 60);
+    min = Math.floor(segundos / 60) % 60;
     seg = segundos % 60;
     tiempoCronometrado = hr + ':' + min + ':' + seg;
     elementoTiempo.innerText = tiempoCronometrado;
