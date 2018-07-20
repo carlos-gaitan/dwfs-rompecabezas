@@ -2,14 +2,14 @@
 // Declaracion de variables globales
 //
 
-// Arreglo que contiene las intrucciones del juego
+/* Arreglo que contiene las intrucciones del juego. */
 var instrucciones = ['Mueve las piezas para arriba abajo izquierda derecha hasta que obtengas la imagen deseada.', 'Tomate un mate y divertite!'];
 
-// Arreglo para ir guardando los movimientos que se vayan realizando
+/*Arreglo para ir guardando los movimientos que se vayan realizando. */
 var movimientos = [];
 
-// Representación de la grilla. Cada número representa a una pieza.
-// El 9 es la posición vacía
+/* Representación de la grilla. Cada número representa a una pieza.
+El 9 es la posición vacía. */
 var grilla = [
     [1, 2, 3],
     [4, 5, 6],
@@ -21,8 +21,8 @@ Esta posición comienza siendo la [2, 2]*/
 var filaVacia = 2;
 var columnaVacia = 2;
 
-// juegoPausado es una variable global booleana que me permite mientras el juego
-//esta pausado dejar las fichas estaticas evitando que sigan jugando hasta que quiten la pausa.
+/* juegoPausado es una variable global booleana que me permite mientras el juego
+esta pausado dejar las fichas estaticas evitando que sigan jugando hasta que quiten la pausa. */
 var juegoPausado = false;
 
 //
@@ -62,7 +62,7 @@ function cronometroResume() {
 }
 
 //
-// Funciones varias
+// Varias funciones que desarrollan la logica del juego.
 //
 
 /* Esta función deberá recorrer el arreglo de instrucciones pasado por parámetro.
@@ -98,75 +98,8 @@ function chequearSiGano() {
     return true;
 }
 
-//
-// Funciones para los carteles Bienvenida, Nuevo y Pausado
-//
-
-/*Muestra cartel de Bienvenida al juego.*/
-function mostrarCartelBienvenida() {
-  modalBienvenida.style.display = 'block';
-}
-/*Implementacion Salida de cartel de bienvenida al juego.*/
-var modalBienvenida = document.getElementById('myModalBienvenida');
-modalBienvenida.addEventListener('click', function(){
-  modalBienvenida.style.display = 'none';
-  iniciarJuego();
-});
-
-/*Muestra cartel de juego Pausado.*/
-function mostrarCartelPausado() {
-  modalPausado.style.display = 'block';
-}
-/*Implementacion Salida de cartel de juego pausado.*/
-var modalPausado = document.getElementById('myModalPausado');
-modalPausado.addEventListener('click', function() {
-  modalPausado.style.display = 'none';
-  resumirJuego();
-});
-
-/*Muestra cartel de juego Nuevo.*/
-function mostrarCartelNuevo() {
-  modalNuevo.style.display = 'block';
-}
-/*Implementacion Salida de cartel de juego nuevo.*/
-var modalNuevo = document.getElementById('myModalNuevo');
-modalNuevo.addEventListener('click', function() {
-  modalNuevo.style.display = 'none';
-  juegoPausado = false;
-  mezclarPiezas(30);
-  cronometroReiniciar();
-});
-
-/*Muestra cartel de Ganador.*/
-function mostrarCartelGanador() {
-    modalGanador.style.display = "block";
-    cronometroPausar();
-    mostrarCincoUltimosMovimientos(movimientos);
-    mostrarTiempoTranscurrido();
-    movimientos = [];
-}
-/*Implementacion Salida de cartel ganador.*/
-var modalGanador = document.getElementById('myModalGanador');
-modalGanador.addEventListener('click', function() {
-  modalGanador.style.display = 'none';
-  var elemento = document.getElementById('cinco-mov');
-  while (elemento.firstChild) {
-    elemento.removeChild(elemento.firstChild);
-  };
-  juegoPausado = false;
-  mezclarPiezas(30);
-  cronometroReiniciar();
-});
-
-
-
-//
-// Estoy ordennado y quede por aca!
-//
-//
 
 function mostrarCincoUltimosMovimientos(arrelgoDeMovimientos) {
-  // FIXME: debo decidir como y en que elemento del dom agrego las flechas.
   var listaCincoMovimientos = document.getElementById('cinco-mov');
   var comienzo = arrelgoDeMovimientos.length - 5;
 for (var i = comienzo; i < arrelgoDeMovimientos.length; i++) {
@@ -217,18 +150,17 @@ function intercambiarPosicionesGrilla(filaPos1, columnaPos1, filaPos2, columnaPo
     grilla[filaPos2][columnaPos2] = contenedorAuxiliar;
 }
 
-// Actualiza la posición de la pieza vacía
+/* Actualiza la posición de la pieza vacía */
 function actualizarPosicionVacia(nuevaFila, nuevaColumna) {
     filaVacia = nuevaFila;
     columnaVacia = nuevaColumna;
 }
 
 
-// Para chequear si la posicón está dentro de la grilla.
+/* Para chequear si la posicón está dentro de la grilla. */
 function posicionValida(fila, columna) {
     var width = grilla.length;
     var height = grilla[0].length;
-    // return (0 <= fila) && (fila <=2) && (0 <= columna) && (columna <=2)
     return 0 <= fila && fila < width && 0 <= columna && columna < height;
 }
 
@@ -266,11 +198,9 @@ function moverEnDireccion(direccion) {
   /* A continuación se chequea si la nueva posición es válida, si lo es, se intercambia.
   Para que esta parte del código funcione correctamente deberás haber implementado
   las funciones posicionValida, intercambiarPosicionesGrilla y actualizarPosicionVacia */
-
   if (posicionValida(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia)) {
     intercambiarPosiciones(filaVacia, columnaVacia, nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
     actualizarPosicionVacia(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
-    //COMPLETAR: Agregar la dirección del movimiento al arreglo de movimientos
     agregarUltimaDireccion(direccion);
   }
 }
@@ -313,7 +243,6 @@ function intercambiarPosiciones(fila1, columna1, fila2, columna2) {
 
 /* Intercambio de posiciones de los elementos del DOM que representan
 las fichas en la pantalla */
-
 function intercambiarPosicionesDOM(idPieza1, idPieza2) {
   // Intercambio posiciones en el DOM
   var elementoPieza1 = document.getElementById(idPieza1);
@@ -361,7 +290,6 @@ function mostrarInstruccionEnLista(instruccion, idLista) {
 /* Función que mezcla las piezas del tablero una cantidad de veces dada.
 Se calcula una posición aleatoria y se mueve en esa dirección. De esta forma
 se mezclará todo el tablero. */
-
 function mezclarPiezas(veces) {
   if (veces <= 0) {
     return;
@@ -390,8 +318,8 @@ function capturarTeclas() {
       evento.which === codigosDireccion.ARRIBA ||
       evento.which === codigosDireccion.DERECHA ||
       evento.which === codigosDireccion.IZQUIERDA) {
-        // Aca tomo la variable global juegoPausado para ver si esta
-        //pausado o activo y asi permitir o no mover las imagenes.
+        /* Aca tomo la variable global juegoPausado para ver si esta
+        pausado o activo y asi permitir o no mover las imagenes.*/
         if (juegoPausado === false) {
           moverEnDireccion(evento.which);
           var gano = chequearSiGano();
@@ -406,6 +334,70 @@ function capturarTeclas() {
     })
 }
 
+//
+// Funciones para los carteles Bienvenida, Nuevo y Pausado
+//
+/*Muestra cartel de Bienvenida al juego.*/
+function mostrarCartelBienvenida() {
+  modalBienvenida.style.display = 'block';
+}
+/*Implementacion Salida de cartel de bienvenida al juego.*/
+var modalBienvenida = document.getElementById('modal-bienvenida');
+modalBienvenida.addEventListener('click', function(){
+  modalBienvenida.style.display = 'none';
+  iniciarJuego();
+});
+
+/*Muestra cartel de juego Pausado.*/
+function mostrarCartelPausado() {
+  modalPausado.style.display = 'block';
+}
+/*Implementacion Salida de cartel de juego pausado.*/
+var modalPausado = document.getElementById('modal-pausado');
+modalPausado.addEventListener('click', function() {
+  modalPausado.style.display = 'none';
+  resumirJuego();
+});
+
+/*Muestra cartel de juego Nuevo.*/
+function mostrarCartelNuevo() {
+  modalNuevo.style.display = 'block';
+}
+/*Implementacion Salida de cartel de juego nuevo.*/
+var modalNuevo = document.getElementById('modal-nuevo');
+modalNuevo.addEventListener('click', function() {
+  modalNuevo.style.display = 'none';
+  movimientos = [];
+  juegoPausado = false;
+  mezclarPiezas(30);
+  cronometroReiniciar();
+});
+
+/*Muestra cartel de Ganador.*/
+function mostrarCartelGanador() {
+    modalGanador.style.display = "block";
+    cronometroPausar();
+    mostrarCincoUltimosMovimientos(movimientos);
+    mostrarTiempoTranscurrido();
+}
+/*Implementacion Salida de cartel ganador.*/
+var modalGanador = document.getElementById('modal-ganador');
+modalGanador.addEventListener('click', function() {
+  modalGanador.style.display = 'none';
+  var elemento = document.getElementById('cinco-mov');
+  while (elemento.firstChild) {
+    elemento.removeChild(elemento.firstChild);
+  };
+  juegoPausado = false;
+  mezclarPiezas(60);
+  cronometroReiniciar();
+  movimientos = [];
+});
+
+//
+// Funciones de las 4 funcionalidades que tiene el juego (inicio-nuevo-pausa-resumir)
+//
+
 /* Se inicia el rompecabezas mezclando las piezas 60 veces
 y ejecutando la función para que se capturen las teclas que
 presiona el usuario */
@@ -414,7 +406,7 @@ presiona el usuario */
 function iniciarJuego() {
   mostrarInstrucciones(instrucciones);
   cronometro();
-  mezclarPiezas(30);
+  mezclarPiezas(60);
   capturarTeclas();
 }
 
@@ -429,7 +421,7 @@ function pausarJuego() {
   mostrarCartelPausado();
 }
 
-/* Funcion que inicia un juego Nuevo una vez que ya se cargo el juego por primera vez */
+/* Funcion que inicia un juego Nuevo luego de que ya haya cargado el juego por primera vez */
 function nuevoJuego() {
   cronometroPausar();
   juegoPausado = true;

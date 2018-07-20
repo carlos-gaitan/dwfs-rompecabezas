@@ -24,16 +24,13 @@
         <div id="flecha" class="texto-centrado"></div>
       </div>
       <div class="controles-tiempo">
-        <!-- <div id="reloj" class="control-btn"> p </div> -->
         <div class="control-btn">
           <div id="tiempo"></div>
         </div>
         <div class="control-btn"><a onclick="nuevoJuego()"href="#">nuevo</a></div>
         <div class="control-btn"><a onclick="pausarJuego()"href="#">pausa</a></div>
-        <!-- <div class="control-btn"><a onclick="cronometroResume();"href="#">Resume</a></div> -->
       </div>
     </div>
-
     <div class="col-60">
       <div class="tablero" id="juego">
         <div class="pieza" id="pieza1"><img src="images/10.jpg" alt=""></div>
@@ -47,14 +44,12 @@
         <div class="pieza" id="pieza9"><img src="images/90.jpg" alt=""></div>
       </div>
     </div>
-
     <div class="footer" id="footer">
       algunos derechos reservados | Acamica & elcharly - 2018
     </div>
 
-  <!-- Modal Css - Mensaje has ganado -->
-    <div id="myModalGanador" class="modal">
-      <!-- Modal content -->
+  <!-- Modal Css - juego Ganado -->
+    <div id="modal-ganador" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Rompecabezas elcharly-block</h2>
@@ -69,9 +64,8 @@
         <p>Hace click en cualquier parte de la pantalla para comenzar a jugar nuevamente.</p>
       </div>
     </div>
-    <!-- Modal Css - Bienvenida al juego -->
-    <div id="myModalBienvenida" class="modal">
-      <!-- Modal content -->
+    <!-- Modal Css - juego Bienvenida -->
+    <div id="modal-bienvenida" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Rompecabezas elcharly-block</h2>
@@ -80,31 +74,28 @@
         <p>Hace click en cualquier parte de la pantalla para comenzar a jugar.</p>
       </div>
     </div>
-    <!-- Modal Css - Inicio nuevo juego-->
-    <div id="myModalNuevo" class="modal">
-      <!-- Modal content -->
+
+    <!-- Modal Css - juego Nuevo-->
+    <div id="modal-nuevo" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Rompecabezas elcharly-block</h2>
         <h3>JUEGO NUEVO</h3>
         <p>Selecionaste comenzar nuevamente el juego, espero tengas suerte y lo puedas terminar en el menor tiempo posible.</p>
+        <p>Esto implica que se volveran a mezclar las fichas y ademas el cronometro volvera a 0:0:0.</p>
         <p>Hace click en cualquier parte de la pantalla para comenzar a jugar.</p>
       </div>
     </div>
-    <!-- Modal Css - Juego pausado -->
-    <div id="myModalPausado" class="modal">
-      <!-- Modal content -->
+    <!-- Modal Css - juego Pausado -->
+    <div id="modal-pausado" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Rompecabezas elcharly-block</h2>
         <h3>JUEGO PAUSADO</h3>
         <p>Acabas de pausar el juego, esto implica que el cronometro ya no avanza pero recuerda que tampoco podras mover las fichas.</p>
         <p>Hace click en cualquier parte de la pantalla para volver a jugar.</p>
-        <!-- <a onclick="resumirJuego()" href="#">volver a jugar</a> -->
       </div>
     </div>
-
-  <!--  <script src="js/juego.js"></script> -->
     <script src="js/juego.js"></script>
   </body>
 </html>
